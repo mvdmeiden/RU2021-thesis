@@ -9,7 +9,7 @@
 class Agent:
 
     # constructor
-    def __init__(self, i,  I, O, S_prime):
+    def __init__(self, i,  D, M_prime): #each d in D is a pair of (s, b) [situation, behaviour] and M_prime is a pair (M, accuracy)
         self.id = i
 
 
