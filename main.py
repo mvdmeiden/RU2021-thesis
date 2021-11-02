@@ -1,25 +1,32 @@
-# Authors
-# ...
-# ...
+from Machine import Machine
+from Agent import Agent
 
-# Imports
+#Main experiment environment
 
-# The rest of the code
+if __name__ == "__main__":
 
-class Agent:
+#Parameters
+    ACCEPTANCE_THRESHOLD = 0.6
+    COMPLEXITY_LIMIT = 5
+    dictionary = ['a', 'b']
+    data = "abba"
 
-    # constructor
-    def __init__(self, i,  D, M_prime): #each d in D is a pair of (s, b) [situation, behaviour] and M_prime is a pair (M, accuracy)
-        self.id = i
+#Initialize Machine pool
+
+    machine_1 = Machine()
+    machine_1.define_random_dictionary()
+    machine_1.show_dictionary()
+
+#Initialize Agents
+    agent_1 = Agent()
+    agent_2 = Agent()
+
+#Run Experimental setup
+
+    while agent_1.get_acceptance() < ACCEPTANCE_THRESHOLD and agent_1.get_states() < COMPLEXITY_LIMIT:
+        agent_1.refer_on(data, machine_1)
 
 
-class Environment:
-    # constructor
-    def __init__(self):
-        # some FSM like structure
+#Gather results
 
-
-
-
-
-## all actions go down here
+    agent_1.print_results()
