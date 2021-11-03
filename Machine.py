@@ -9,8 +9,8 @@ class Machine:
         self.input_alphabet = input_alphabet
         self.upper_bound = upper_bound
         self.output_alphabet = output_alphabet if output_alphabet is not None else input_alphabet
-        self.num_sates = rnd.randint(2, self.upper_bound)
-        self.states = self.make_state_list(self.num_sates, self.input_alphabet, self.output_alphabet)
+        self.num_states = rnd.randint(2, self.upper_bound)
+        self.states = self.make_state_list(self.num_states, self.input_alphabet, self.output_alphabet)
 
     @staticmethod
     def make_state_list(num_states, input_alphabet, output_alphabet):
@@ -33,23 +33,17 @@ class Machine:
         current_state = starting_state  # index of the initial state
         for i in range(len(inputString)):
 
-            temp = inputString[i]                                                   # current char in the input string
-            current_transitions = self.states[current_state].return_transitions()   # current state's dictionary
+            temp = inputString[i]                                               # current char in the input string
+            match = self.states[current_state].transitions.get(int(temp))       # see if string char is in dictionary
+            if match is None:
+                return 'incorrect character in string'                          # if not: give error message
 
-            # loop through the current state's dictionary
-            # check when the current char equals the key in the dictionary
-            # get the correct dictionary values and update the output string
-            for item in current_transitions:
-
-                if int(temp) == item:
-                    next_state, output = current_transitions[item]
-                    outputString = outputString + str(output)
-
-                    # update current state index for next iteration
-                    for j in range(0, self.num_sates):
-                        if self.states[j].return_name() == next_state:
-                            current_state = j
-                            break
+            next_state, output = match
+            outputString = outputString + str(output)
+            for j in range(0, self.num_states):                                 # update current state index
+                if self.states[j].return_name() == next_state:
+                    current_state = j
+                    break
 
         return outputString
 
