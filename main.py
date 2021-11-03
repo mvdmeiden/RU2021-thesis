@@ -3,21 +3,21 @@
 # ...
 
 # Imports
+import numpy as np
+from Machine import Machine
+from Agent import Agent
 
 # The rest of the code
+test = Machine(4)
+agent = Agent()
+test.show()
 
-class Agent:
-
-    # constructor
-    def __init__(self, i,  D, M_prime): #each d in D is a pair of (s, b) [situation, behaviour] and M_prime is a pair (M, accuracy)
-        self.id = i
-
-
-class Environment:
-    # constructor
-    def __init__(self):
-        # some FSM like structure
-
+results = []
+results.append(test.run_input('12011'))
+results.append(test.run_input('10110'))
+results.append(test.run_input('001011'))
+results.append(test.run_input('01010011'))
+print(results)
 
 
 
