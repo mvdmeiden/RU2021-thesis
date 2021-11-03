@@ -28,7 +28,7 @@ def add_states():
     count = num_of_states
     statesL = []
 
-    while (count != 0):
+    while count != 0:
         name = str(input("Name of state: "))
         inputs = str(input("Inputs and outputs of the state 0:x, o1 and 1:y,o2 : "))
         x, o1, y, o2 = inputs.split(' ')
@@ -39,9 +39,6 @@ def add_states():
         count = count - 1
 
     return statesL
-
-
-statesL = add_states()
 
 
 def iterate_through_states(statesL, inputString):
@@ -77,4 +74,5 @@ def iterate_through_states(statesL, inputString):
     print("Output String: ", outputString)
 
 
+statesL = add_states()
 iterate_through_states(statesL, '10100')

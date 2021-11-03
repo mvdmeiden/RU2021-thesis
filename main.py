@@ -44,6 +44,5 @@ currentState = 0
 
 for i in range(len(inputString)):
     temp = inputString[i]
-    outputChar, nextState = test[currentState].
 
 
