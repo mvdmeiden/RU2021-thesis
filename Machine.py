@@ -9,7 +9,7 @@ class Machine:
         self.input_alphabet = input_alphabet
         self.upper_bound = upper_bound
         self.output_alphabet = output_alphabet if output_alphabet is not None else input_alphabet
-        self.num_states = rnd.randint(2, self.upper_bound)
+        self.num_states = rnd.randint(2, self.upper_bound) if upper_bound >= 2 else upper_bound
         self.states = self.make_state_list(self.num_states, self.input_alphabet, self.output_alphabet)
 
     @staticmethod

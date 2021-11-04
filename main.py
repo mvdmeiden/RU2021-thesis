@@ -8,22 +8,20 @@ from Machine import Machine
 from Agent import Agent
 
 # The rest of the code
-test = Machine(4)
-agent = Agent()
+test = Machine(2)
+agent = Agent(0)
 test.show()
 
-results = []
-results.append(test.run_input('11011'))
-results.append(test.run_input('10110'))
-results.append(test.run_input('001011'))
-results.append(test.run_input('01010011'))
-print(results)
+print()
+agent.generate_machine_onestate()
+agent.current_machine.show()
 
-dictionary = {'hallo': 'doei',
-              'zwart': 'wit'}
-print(dictionary.get('hallo'))
+print()
+test.show()
 
-
-
-
-## all actions go down here
+# results = []
+# results.append(test.run_input('11011'))
+# results.append(test.run_input('10110'))
+# results.append(test.run_input('001011'))
+# results.append(test.run_input('01010011'))
+# print(results)
