@@ -17,6 +17,7 @@ if __name__ == "__main__":
     machine_1 = Machine()
     machine_1.define_random_dictionary()
     machine_1.show_dictionary()
+    machine_1.run_input("abbabbabbbabbb")
 
 #Initialize Agents
     agent_1 = Agent()
@@ -24,10 +25,10 @@ if __name__ == "__main__":
 
 #Run Experimental setup
 
-    while agent_1.get_acceptance() < ACCEPTANCE_THRESHOLD and agent_1.get_states() < COMPLEXITY_LIMIT:
-        agent_1.refer_on(data, machine_1)
+#    while agent_1.get_acceptance() < ACCEPTANCE_THRESHOLD and agent_1.get_states() < COMPLEXITY_LIMIT:
+#        agent_1.refer_on(data, machine_1)
 
 
 #Gather results
 
-    agent_1.print_results()
+#   agent_1.print_results()

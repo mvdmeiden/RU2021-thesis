@@ -10,7 +10,7 @@ class State(object):
     def return_name(self):
         return self.name
 
-    def return_input(self):
+    def return_dictionary(self):
         return self.next_state
 
     def show(self):
