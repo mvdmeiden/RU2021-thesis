@@ -11,6 +11,10 @@ class Agent():
         pass
 
     def check_current_Model(self, input, own_machine):
+        run_model(current_machine, data)
+
+        if accuracy > 0:
+            return 0
         return 0
 
     def refer_on(self, data, machine):

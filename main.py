@@ -8,8 +8,9 @@ if __name__ == "__main__":
 #Parameters
     ACCEPTANCE_THRESHOLD = 0.6
     COMPLEXITY_LIMIT = 5
+    DATA_LIMIT = 10
     dictionary = ['a', 'b']
-    data = "abba"
+    data = 0
 
 #Initialize Machine pool
 

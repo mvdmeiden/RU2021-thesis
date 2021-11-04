@@ -1,7 +1,7 @@
 class State(object):
 
     name = 0
-    next_state= 0
+    next_state= []
 
     def __init__(self, name, next_state):
         self.name = name
@@ -12,3 +12,9 @@ class State(object):
 
     def return_input(self):
         return self.next_state
+
+    def show(self):
+        full_string = ""
+        full_string = full_string + self.name + ", "
+        full_string = full_string + str(self.next_state)
+        print(full_string)
