@@ -17,8 +17,7 @@ if __name__ == "__main__":
     fsm_1 = Machine()
     fsm_1.define_random_fsm()
     fsm_1.show_fsm()
-
-#    fsm_1.run_input("abbabbabbbabbb")
+    fsm_1.run_input("abbabbabbbabbb")
 
 #Initialize Agents
     agent_1 = Agent()

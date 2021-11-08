@@ -10,7 +10,7 @@ class Machine:
     dictionary = ['a', 'b']
 
     start_state = 0
-    current_state = 0
+    current_state = None
 
     # __________________________FSM_Construction__________________________________
 
@@ -68,15 +68,25 @@ class Machine:
     # __________________________FSM_User_Functions__________________________
 
     def run_input(self, input):
-        current_state = self.transition_dictionary[self.start_state]
         output = ""
+        current_state = self.transition_dictionary[self.start_state]
+
+        # Input consistency check
         if not self.valid_input(input):
             print("Invalid input, input should be instance of string with subset of dictionary.")
             return None
-        for letter in input:
-            output = output + self.transition_dictionary[letter]
-            current_state = self.transition_dictionary[letter]
+        if self.transition_dictionary == []:
+            print(input)
+            return input
 
+        for letter in input:
+            output = output + current_state.return_corresponding_output(letter)
+            current_state = self.transition_dictionary[current_state.return_corresponding_new_state(letter)]
+
+        print("Input:")
+        print(input)
+        print("Output:")
+        print(output)
         return output
 
     # Print function to display FSM

@@ -1,12 +1,15 @@
 class State(object):
 
+    # Parameters
     name = 0
     next_state = []
 
+    # Initializer
     def __init__(self, name, next_state):
         self.name = name
         self.next_state = next_state
 
+    # Getters (Addendum: Might be superfluous given Python's lack of variable security)
     def return_name(self):
         return self.name
 
@@ -20,6 +23,14 @@ class State(object):
             actual_number = int(string_number[1])
             state_numbers.append(actual_number)
         return state_numbers
+
+    def return_corresponding_output(self, input):
+
+        return self.next_state[input][1]
+
+    def return_corresponding_new_state(self, input):
+
+        return int(self.next_state[input][0][1])
 
     def show(self):
         full_string = ""
