@@ -8,16 +8,19 @@ from Machine import Machine
 from Agent import Agent
 
 # The rest of the code
-test = Machine(2)
-agent = Agent(0)
-test.show()
+datatest = [['00110', '01101'],
+            ['0101', '1000'],
+            ['110', '111']]
+datatest = np.array(datatest)
 
+start = Machine(5)
+start.show()
 print()
-agent.generate_machine_onestate()
-agent.current_machine.show()
 
-print()
-test.show()
+agent = Agent(0, datatest, acceptance=0.3)
+agent.current_machine = start
+
+print(agent.check_machines())
 
 # results = []
 # results.append(test.run_input('11011'))

@@ -5,7 +5,7 @@ from State import State
 
 class Machine:
 
-    def __init__(self, upper_bound, input_alphabet=(0, 1), output_alphabet=None):
+    def __init__(self, upper_bound, input_alphabet=('0', '1'), output_alphabet=None):
         self.input_alphabet = input_alphabet
         self.upper_bound = upper_bound
         self.output_alphabet = output_alphabet if output_alphabet is not None else input_alphabet
@@ -17,9 +17,9 @@ class Machine:
         state_list = []
         temp_states = []
         for i in range(0, num_states):
-            s = 's' + str(i)
+            s = 'q' + str(i)
             temp_states.append(s)
-            state_list.append(State('s' + str(i), {}))
+            state_list.append(State('q' + str(i), {}))
 
         for state in state_list:
             for j in range(0, len(input_alphabet)):
@@ -34,7 +34,7 @@ class Machine:
         for i in range(len(inputString)):
 
             temp = inputString[i]                                               # current char in the input string
-            match = self.states[current_state].transitions.get(int(temp))       # see if string char is in dictionary
+            match = self.states[current_state].transitions.get(temp)       # see if string char is in dictionary
             if match is None:
                 return 'incorrect character in string'                          # if not: give error message
 
