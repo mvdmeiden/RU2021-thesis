@@ -17,13 +17,13 @@ class Machine:
         output = False
         return output
 
-    #Simple helper to automatically print FSM transition tables
+    # Simple helper to automatically print FSM transition tables
     def show_dictionary(self):
 
         print(self.transition_dictionary)
         print(" ")
 
-    #Constructs random transition dictionary representing a random FSM
+    # Constructs random transition dictionary representing a random FSM
     def define_random_dictionary(self):
 
         transition_dict = []

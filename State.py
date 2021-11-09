@@ -1,7 +1,7 @@
 class State(object):
 
     name = 0
-    next_state= 0
+    next_state = 0
 
     def __init__(self, name, next_state):
         self.name = name
