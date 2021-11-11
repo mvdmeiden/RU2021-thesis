@@ -34,7 +34,7 @@ class Machine:
         for i in range(len(inputString)):
 
             temp = inputString[i]                                               # current char in the input string
-            match = self.states[current_state].transitions.get(temp)       # see if string char is in dictionary
+            match = self.states[current_state].transitions.get(temp)            # see if string char is in dictionary
             if match is None:
                 return 'incorrect character in string'                          # if not: give error message
 
