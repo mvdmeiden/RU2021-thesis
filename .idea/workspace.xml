@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef9aa746-dd25-4834-92a9-69532fa1fd4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MealyMachine.py" afterDir="false" />
+    <list default="true" id="46e4c5c4-635e-42c5-915d-b7c5056d43fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/RU2021-thesis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RU2021-thesis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Miekes-code/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Miekes-code/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Miekes-code/Machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/Miekes-code/Machine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Miekes-code/State.py" beforeDir="false" afterPath="$PROJECT_DIR$/Miekes-code/State.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Miekes-code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Miekes-code/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,31 +20,48 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
+        <entry file="file://$PROJECT_DIR$/Miekes-code/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="129">
+              <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+              <folding>
+                <element signature="e#141#159#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MealyMachine.py">
+        <entry file="file://$PROJECT_DIR$/Miekes-code/Machine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="72" selection-start-line="1" selection-start-column="72" selection-end-line="1" selection-end-column="72" />
+            <state relative-caret-position="-289">
+              <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Miekes-code/State.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Miekes-code/Agent.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="724">
+              <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+              <folding>
+                <element signature="e#10#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,8 +69,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/MealyMachine.py" />
+        <option value="$PROJECT_DIR$/Miekes-code/Agent.py" />
+        <option value="$PROJECT_DIR$/Miekes-code/State.py" />
+        <option value="$PROJECT_DIR$/Miekes-code/main.py" />
+        <option value="$PROJECT_DIR$/Miekes-code/Machine.py" />
       </list>
     </option>
   </component>
@@ -69,6 +93,15 @@
               <item name="RU2021-thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="RU2021-thesis" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RU2021-thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RU2021-thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="Miekes-code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RU2021-thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment02" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -77,6 +110,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -92,7 +126,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="MealyMachine" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RU2021-thesis" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -100,11 +134,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Miekes-code" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MealyMachine.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Miekes-code/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -115,7 +149,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.MealyMachine" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -124,24 +158,23 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ef9aa746-dd25-4834-92a9-69532fa1fd4e" name="Default Changelist" comment="" />
-      <created>1634648449975</created>
+      <changelist id="46e4c5c4-635e-42c5-915d-b7c5056d43fd" name="Default Changelist" comment="" />
+      <created>1636623653424</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1634648449975</updated>
+      <updated>1636623653424</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3297587" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -156,17 +189,56 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/Bens-code/Machine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state>
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MealyMachine.py">
+    <entry file="file://$PROJECT_DIR$/../../../2019-2020/RepresentationsAndInteractions/Assignment02/5_multiagent_continuous.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="72" selection-start-line="1" selection-start-column="72" selection-end-line="1" selection-end-column="72" />
+        <state relative-caret-position="-3060" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../2019-2020/RepresentationsAndInteractions/Assignment02/4_multiagent__common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1870" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Miekes-code/Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="724">
+          <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+          <folding>
+            <element signature="e#10#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Miekes-code/State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Miekes-code/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+          <folding>
+            <element signature="e#141#159#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Miekes-code/Machine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
         </state>
       </provider>
     </entry>
