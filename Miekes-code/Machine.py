@@ -25,7 +25,7 @@ class Machine:
         for i in range(1, self.num_states):
             state_name = 'q' + str(i)
             nr_out = rnd.randint(0, 2)
-            nr_in = rnd.randint(1, len(self.emptytrans))
+            nr_in = rnd.randint(1, int(len(self.emptytrans)/2))
 
             if not self.emptytrans:
                 print('prematurely terminated')
@@ -44,22 +44,6 @@ class Machine:
                 temp_states[i].transitions[rnd.choice(self.input_alphabet)] = (target_state, rnd.choice(self.output_alphabet))
 
         return temp_states
-
-    def is_valid(self):
-        # if no state list exists, the machine is not valid
-        if self.states is None:
-            return False
-
-        # if a list does exist start checking consistency
-        all_connected_states = []
-        for state in self.states:
-            list = state.return_next_state_options()
-            for v in list:
-                all_connected_states.append(v)
-        for i in range(0, self.num_states):
-            if not all_connected_states.__contains__(i):
-                return False
-        return True
 
     def run_input(self, inputString, starting_state=0):
         outputString = ''

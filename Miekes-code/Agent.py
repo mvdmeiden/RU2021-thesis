@@ -3,7 +3,6 @@ import random as rnd
 import textdistance
 from State import State
 from Machine import Machine
-import copy
 
 
 class Agent:
