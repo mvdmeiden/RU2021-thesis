@@ -1,45 +1,64 @@
 from Machine import Machine
+import statistics
+from State import State
 
 
 class Agent:
     # Parameters
-    minimum_accuracy = 0
-    accuracy = 0
-    max_amount_of_states = 0
-    data = 0
-    current_machine = None
+    # ______________________
+    accuracy = 0  # !!!!
+    number_of_states = 0
+
+    agent_machine = None
+    # ______________________
+
     dictionary = None
     bias = 0
 
     # ____________________________Agent_Initialization_______________________________________
 
     # Initialization
-    def __init__(self, acceptance_threshold, complexity_limit, dictionary):
-        self.minimum_accuracy = acceptance_threshold
-        self.max_amount_of_states = complexity_limit
+    def __init__(self, dictionary, bias_factor):
+
         self.dictionary = dictionary
-        current_machine = Machine(dictionary)
+        self.bias = bias_factor
+        self.current_machine = Machine(dictionary)
         pass
 
-    def check_current_Model(self, input, own_machine):
-        return 0
+    # Supports incremental building of the Agent's FSM by means of probabilistic logic
+    def build_model_incrementally(self):
+        new_state = self.current_machine.add_incremental_layer(self.number_of_states + 1)
+        self.current_machine.transition_dictionary.append(new_state)
+        self.number_of_states = self.number_of_states + 1
+        pass
 
-    def refer_on(self, data, machine):
-        self.amount_of_states = self.amount_of_states + 1
-        return 0
 
-    def get_states(self):
+#    while agent_neutral.accuracy < ACCEPTANCE_THRESHOLD and agent_neutral.number_of_states < COMPLEXITY_LIMIT:
+#        agent_neutral.build_model_incrementally()
+ #       if agent_neutral.check_model_accuracy(fsm1, data_pool) < agent_neutral.accuracy:
+#          # revert and choose other option
+#        pass
 
-        return self.amount_of_states
+    # Accuracy checker compares outputs between own model and base machine, returns averaged accuracy over some data set
+    def check_model_accuracy(self, other_model, data):
+        agent_model = self.current_machine
+        machine_model = other_model
+        accuracy_list = []
 
-    def get_acceptance(self):
+        for d in data:
+            agent_output = agent_model.run_input(d)
+            model_output = machine_model.run_input(d)
+            accuracy = (sum(agent_output[i] != model_output[i] for i in range(len(model_output)))) / len(model_output)
+            accuracy_list.append(accuracy)
 
-        return self.current_acceptance
+        averaged_accuracy = statistics.mean(accuracy_list)
+        return averaged_accuracy
 
+    # Output printer consistent with output FSM and output accuracy
     def print_results(self):
         print("Agent found machine: ")
         print(self.current_machine)
         print("_________")
-        print("With accuracy rating:" + self.accuracy.__str__())
+        print("With accuracy rating:" + self.current_accuracy.__str__())
         print("")
         return 0

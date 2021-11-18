@@ -3,10 +3,11 @@ from State import State
 
 
 class Machine:
+    # Parameters
     INTERNAL_UPPER_BOUND = 9
     state_amount = random.randint(2, INTERNAL_UPPER_BOUND)
 
-    transition_dictionary = None
+    transition_dictionary = []
     dictionary = None
 
     start_state = 0
@@ -39,6 +40,17 @@ class Machine:
         for i in dictionary:
             dict[i] = ('q' + str(random.randint(0, self.state_amount - 1)), random.choice(dictionary))
         return dict
+
+    # FSM function for creating a new state incrementally
+    def add_incremental_layer(self, state_number):
+        #Go forward
+        if state_number == 1:
+
+        random.
+        new_state = 0
+
+        #Go backward
+        return new_state
 
     # ________________________Consistency_Checks________________________________
 
@@ -83,10 +95,6 @@ class Machine:
             output = output + current_state.return_corresponding_output(letter)
             current_state = self.transition_dictionary[current_state.return_corresponding_new_state(letter)]
 
-        print("Input:")
-        print(input)
-        print("Output:")
-        print(output)
         return output
 
     # Print function to display FSM

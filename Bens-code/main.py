@@ -2,18 +2,25 @@ from Machine import Machine
 from Agent import Agent
 import random
 
-#Main experiment environment
+# Main environment
 
 if __name__ == "__main__":
 
-    # Parameters
+    # -------------------Model Parameters________________________
+
+    # Internal limiters
     ACCEPTANCE_THRESHOLD = 0.65
     COMPLEXITY_LIMIT = 5
     DATA_LIMIT = 10
+
+    # Finite State Machine dictionary
     dictionary = ['a', 'b']
-    data = "abbaabababa"
+
+    # Data and Finite State Machines
     data_pool = []
     fsm_pool = []
+
+# ______________________________________________________
 
     # Initialize data pool
 
@@ -32,20 +39,19 @@ if __name__ == "__main__":
         fsm_pool.append(Machine(dictionary))
         fsm_pool[i].define_random_fsm()
 
+    fsm1 = Machine(dictionary)
+    fsm1.define_random_fsm()
+
     # Initialize Agents
 
-    agent_rationale = Agent(ACCEPTANCE_THRESHOLD, COMPLEXITY_LIMIT, dictionary)
-    agent_neutral = Agent(ACCEPTANCE_THRESHOLD, COMPLEXITY_LIMIT, dictionary)
-    agent_non_rationale = Agent(ACCEPTANCE_THRESHOLD, COMPLEXITY_LIMIT, dictionary)
+    agent_rationale = Agent(dictionary, 1)
+    agent_neutral = Agent(dictionary, 0.5)
+    agent_non_rationale = Agent(dictionary, 0)
 
     # Run Experimental setup
 
-#    while agent_1.get_acceptance() < ACCEPTANCE_THRESHOLD and agent_1.get_states() < COMPLEXITY_LIMIT:
-#        agent_1.refer_on(data, machine_1)
+    agent_neutral.build_model_incrementally()
 
+    # Gather results
 
-    #Gather results
-
-    agent_rationale.print_results()
     agent_neutral.print_results()
-    agent_non_rationale.print_results()
