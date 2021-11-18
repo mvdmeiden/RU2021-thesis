@@ -1,20 +1,13 @@
 class State(object):
 
     # Parameters
-    name = 0
+    name = ""
     next_state = []
 
     # Initializer
     def __init__(self, name, next_state):
         self.name = name
         self.next_state = next_state
-
-    # Simple getters (Addendum: Might be superfluous given Python's lack of variable security)
-    def return_name(self):
-        return self.name
-
-    def return_dictionary(self):
-        return self.next_state
 
     # Returns all potential states this state can progress towards
     def return_next_state_options(self):
