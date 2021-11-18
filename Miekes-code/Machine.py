@@ -1,6 +1,7 @@
 # imports
 import random as rnd
 from State import State
+import copy
 
 
 class Machine:
@@ -12,47 +13,37 @@ class Machine:
         self.output_alphabet = output_alphabet if output_alphabet is not None else input_alphabet
         self.num_states = rnd.randint(2, self.upper_bound) if upper_bound >= 2 else upper_bound
 
-        # the actual FST is created here; a list of states with transitions
-        self.states = None
-        #while not self.is_valid():
-        #    print('i tried')
-            # self.states = self.make_state_list(self.num_states, self.input_alphabet, self.output_alphabet)
-        self.build_incrementally()
-
-    def make_state_list(self, num_states, input_alphabet, output_alphabet):
-        state_list = []
-        temp_states = []
-        for i in range(0, num_states):
-            s = 'q' + str(i)
-            temp_states.append(s)
-            state_list.append(State('q' + str(i), {}))
-
-        for state in state_list:
-            for j in range(0, len(input_alphabet)):
-                state.transitions[input_alphabet[j]] = (rnd.choice(temp_states), rnd.choice(output_alphabet))
-
-        return state_list
+        # the actual FST is created here; a list of states with transitions and a list of possible transitions
+        self.emptytrans = []
+        self.states = self.build_incrementally()
 
     def build_incrementally(self):
-        self.states = [State('q0', {})]
+        temp_states = [State('q0', {})]
+        for char in self.input_alphabet:
+            self.emptytrans.append((0, char))   # add tuple (state id, input)
+
         for i in range(1, self.num_states):
             state_name = 'q' + str(i)
             nr_out = rnd.randint(0, 2)
-            nr_in = rnd.randint(1, self.num_states)
+            nr_in = rnd.randint(1, len(self.emptytrans))
+
+            if not self.emptytrans:
+                print('prematurely terminated')
+                self.num_states = len(temp_states)
+                return temp_states
 
             for j in range(0, nr_in):
-                source_state = rnd.choice(self.states)
-                rnd_inp = rnd.choice(self.input_alphabet)
-                if rnd_inp not in source_state.transitions:
-                    source_state.transitions[rnd_inp] = (state_name, rnd.choice(self.output_alphabet))
+                source_state_id, inp = self.emptytrans.pop(rnd.randrange(len(self.emptytrans)))
+                temp_states[source_state_id].transitions[inp] = (state_name, rnd.choice(self.output_alphabet))
 
-            self.states.append(State(state_name, {}))
+            temp_states.append(State(state_name, {}))
+            for char in self.input_alphabet:
+                self.emptytrans.append((i, char))
             for j in range(0, nr_out):
-                target_state = self.states[rnd.randrange(0, len(self.states))].id
-                self.states[i].transitions[rnd.choice(self.input_alphabet)] = (target_state, rnd.choice(self.output_alphabet))
+                target_state = rnd.choice(temp_states).id
+                temp_states[i].transitions[rnd.choice(self.input_alphabet)] = (target_state, rnd.choice(self.output_alphabet))
 
-            self.show()
-            print()
+        return temp_states
 
     def is_valid(self):
         # if no state list exists, the machine is not valid
@@ -70,19 +61,16 @@ class Machine:
                 return False
         return True
 
-
     def run_input(self, inputString, starting_state=0):
-
         outputString = ''
         current_state = starting_state  # index of the initial state
         for i in range(len(inputString)):
 
             temp = inputString[i]                                               # current char in the input string
-            match = self.states[current_state].transitions.get(temp)            # see if string char is in dictionary
-            if match is None:
-                return 'incorrect character in string'                          # if not: give error message
+            if temp not in self.states[current_state].transitions:
+                return outputString + '_' + inputString[i:len(inputString)]
 
-            next_state, output = match
+            next_state, output = self.states[current_state].transitions[temp]
             outputString = outputString + str(output)
             for j in range(0, self.num_states):                                 # update current state index
                 if self.states[j].return_name() == next_state:
@@ -95,3 +83,6 @@ class Machine:
     def show(self):
         for item in self.states:
             print(item)
+
+    def copy(self):
+        return copy.deepcopy(self)

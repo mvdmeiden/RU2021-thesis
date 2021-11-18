@@ -27,22 +27,16 @@ datatest = [['00110', '01101'],
             ['110', '111']]
 datatest = np.array(datatest)
 
-test = Machine(8)
+test = Machine(2)
+test.show()
+print()
 data = generate_data(10, 3, 10, test)
 data = np.array(data)
 # test.show()
-print(data)
+# print(data)
 
+a = Agent(0, data)
+changed = a.add_one_state()
 
-# agent = Agent(0, data, acceptance=0.5)
-# while not agent.satisfied:
-#    agent.current_machine = Machine(5)
-    # print(agent.check_machine())
-    # print(agent.check_machine_char())
+changed.show()
 
-# results = []
-# results.append(test.run_input('11011'))
-# results.append(test.run_input('10110'))
-# results.append(test.run_input('001011'))
-# results.append(test.run_input('01010011'))
-# print(results)

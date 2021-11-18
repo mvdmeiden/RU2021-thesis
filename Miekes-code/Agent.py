@@ -1,34 +1,48 @@
 # imports
 import random as rnd
-from scipy.spatial import distance
 import textdistance
 from State import State
 from Machine import Machine
+import copy
 
 
 class Agent:
-    def __init__(self, i, dataset=[], acceptance=0.6, comp_limit=5):
+    def __init__(self, i, dataset=[], acceptance=0.6, comp_limit=10):
         self.id = i
+        self.dataset = dataset
         self.acceptance = acceptance
         self.comp_limit = comp_limit
         self.current_machine = None
-        self.dataset = dataset
         self.satisfied = False
 
-    def generate_machine_onestate(self, input_machine: Machine = Machine(0)):
-        # create own machine if input is None
-        if input_machine is None:
-            input_machine = Machine(0)
+    def add_one_state(self, given_machine=None):
+        if given_machine is None:
+            new_machine = Machine(0)
+        else: new_machine = given_machine.copy()
 
-        state_index = len(input_machine.states)
-        input_machine.states.append(State('q' + str(state_index), {}))
-        temp_states = [state.return_name() for state in input_machine.states]
+        i = len(new_machine.states)
+        state_name = 'q' + str(i)
+        emptytrans = new_machine.emptytrans
+        nr_out = rnd.randint(0, 2)
+        nr_in = rnd.randint(1, len(emptytrans))
 
-        for j in range(0, len(input_machine.input_alphabet)):
-            input_machine.states[state_index].transitions[input_machine.input_alphabet[j]] = \
-                (rnd.choice(temp_states), rnd.choice(input_machine.output_alphabet))
+        if not emptytrans or i >= self.comp_limit:
+            # maybe add transitions
+            return new_machine
 
-        self.current_machine = input_machine
+        for j in range(0, nr_in):
+            source_state_id, inp = emptytrans.pop(rnd.randrange(len(emptytrans)))
+            new_machine.states[source_state_id].transitions[inp] = (state_name, rnd.choice(new_machine.output_alphabet))
+
+        new_machine.states.append(State(state_name, {}))
+        for char in new_machine.input_alphabet:
+            emptytrans.append((i, char))
+        for j in range(0, nr_out):
+            target_state = rnd.choice(new_machine.states).id
+            new_machine.states[i].transitions[rnd.choice(new_machine.input_alphabet)] = (
+                target_state, rnd.choice(new_machine.output_alphabet))
+        return new_machine
+
 
     def check_machine(self):
         output = [self.current_machine.run_input(i) for i in self.dataset[:, 0]]
