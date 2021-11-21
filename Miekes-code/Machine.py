@@ -13,6 +13,7 @@ class Machine:
         self.output_alphabet = output_alphabet if output_alphabet is not None else input_alphabet
         self.num_states = rnd.randint(2, self.upper_bound) if upper_bound >= 2 else upper_bound
 
+
         # the actual FST is created here; a list of states with transitions and a list of possible transitions
         self.emptytrans = []
         self.states = self.build_incrementally()
@@ -52,11 +53,11 @@ class Machine:
 
             temp = inputString[i]                                               # current char in the input string
             if temp not in self.states[current_state].transitions:
-                return outputString + '_' + inputString[i:len(inputString)]
+                return outputString     # + '_' + inputString[i:len(inputString)]
 
             next_state, output = self.states[current_state].transitions[temp]
             outputString = outputString + str(output)
-            for j in range(0, self.num_states):                                 # update current state index
+            for j in range(0, len(self.states)):                                 # update current state index
                 if self.states[j].return_name() == next_state:
                     current_state = j
                     break
