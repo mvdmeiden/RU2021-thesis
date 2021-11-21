@@ -6,7 +6,6 @@ import numpy as np
 import random as rnd
 from Machine import Machine
 from Agent import Agent
-import textdistance
 
 
 def generate_data(n, min_length, max_length, machine):
@@ -24,18 +23,19 @@ def generate_data(n, min_length, max_length, machine):
 # The rest of the code
 test = Machine(8)
 test.show()
-# print()
-# data = generate_data(100, 3, 10, test)
-# data = np.array(data)
-# # print(data)
-#
-# a = Agent(0, data, comp_limit=10)
-# a.current_machine = Machine(0)
-# while not a.satisfied and len(a.current_machine.states) < a.comp_limit:
-#     a.add_one_state(a.current_machine)
-#     a.run_machine()
-#     print(a.check_machine('hamming'))
-#
+help(generate_data)
+print()
+data = generate_data(100, 3, 10, test)
+data = np.array(data)
+# print(data)
+
+a = Agent(0, data, comp_limit=10)
+a.current_machine = Machine(0)
+while not a.satisfied and len(a.current_machine.states) < a.comp_limit:
+    a.add_one_state(a.current_machine)
+    a.run_machine()
+    print(a.check_machine('accuracy'))
+
 # a.current_machine.show()
 
 

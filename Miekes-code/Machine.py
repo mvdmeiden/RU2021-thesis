@@ -19,16 +19,20 @@ class Machine:
         self.states = self.build_machine()
 
     def build_machine(self):
+        ''' This function creates the list of states and empty transitions for an FST machine.
+        :return: temp_states. A list of states.
+        '''
+
         temp_states = [State('q0', {})]
         for char in self.input_alphabet:
-            self.emptytrans.append((0, char))   # add tuple (state id, input)
+            self.emptytrans.append((0, char))                                              # add tuple (state id, input)
 
         for i in range(1, self.num_states):
             state_name = 'q' + str(i)
             nr_out = rnd.randint(0, 2)
-            nr_in = rnd.randint(1, int(len(self.emptytrans)/2))
+            nr_in = rnd.randint(1, len(self.emptytrans))
 
-            if not self.emptytrans:
+            if not self.emptytrans:                       # if there are no transitions left, the FST can't be completed
                 print('prematurely terminated')
                 self.num_states = len(temp_states)
                 return temp_states
@@ -47,6 +51,13 @@ class Machine:
         return temp_states
 
     def run_input(self, inputString, starting_state=0):
+        '''
+        Run an input string through the machine and get output.
+        :param inputString: the string to be parsed
+        :param starting_state: optional parameter to change the initial state
+        :return: output string of the translated input
+        '''
+
         outputString = ''
         current_state = starting_state  # index of the initial state
         for i in range(len(inputString)):
@@ -66,8 +77,10 @@ class Machine:
 
     # Simple helper to automatically print FSM transition tables
     def show(self):
+        '''to nicely print a machine'''
         for item in self.states:
             print(item)
 
     def copy(self):
+        '''to make a copy. avoids call by reference troubles.'''
         return copy.deepcopy(self)
