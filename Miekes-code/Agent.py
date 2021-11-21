@@ -6,9 +6,9 @@ from Machine import Machine
 
 
 class Agent:
-    def __init__(self, i, dataset=[], acceptance=0.5, comp_limit=10):
+    def __init__(self, i, dataset=None, acceptance=0.5, comp_limit=10):
         self.id = i
-        self.dataset = dataset
+        self.dataset = dataset if not None else []
         self.acceptance = acceptance
         self.comp_limit = comp_limit
         self.current_machine = None

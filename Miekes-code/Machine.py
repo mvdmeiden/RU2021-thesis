@@ -6,19 +6,19 @@ import copy
 
 class Machine:
 
-    def __init__(self, upper_bound, input_alphabet=('0', '1'), output_alphabet=None):
+    def __init__(self, num_states, input_alphabet=('0', '1'), output_alphabet=None):
         # prep work
         self.input_alphabet = input_alphabet
-        self.upper_bound = upper_bound
         self.output_alphabet = output_alphabet if output_alphabet is not None else input_alphabet
-        self.num_states = rnd.randint(2, self.upper_bound) if upper_bound >= 2 else upper_bound
-
+        self.num_states = num_states
+        if num_states > 50:
+            raise ValueError('Too many states')
 
         # the actual FST is created here; a list of states with transitions and a list of possible transitions
         self.emptytrans = []
-        self.states = self.build_incrementally()
+        self.states = self.build_machine()
 
-    def build_incrementally(self):
+    def build_machine(self):
         temp_states = [State('q0', {})]
         for char in self.input_alphabet:
             self.emptytrans.append((0, char))   # add tuple (state id, input)
