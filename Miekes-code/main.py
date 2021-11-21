@@ -27,16 +27,16 @@ datatest = [['00110', '01101'],
             ['110', '111']]
 datatest = np.array(datatest)
 
-test = Machine(8)
+test = Machine(3)
 test.show()
-print()
-data = generate_data(10, 3, 10, test)
-data = np.array(data)
+# print()
+# data = generate_data(10, 3, 10, test)
+# data = np.array(data)
 # test.show()
 # print(data)
 
-a = Agent(0, data)
-changed = a.add_one_state(test)
+# a = Agent(0, data)
+# changed = a.add_one_state(test)
 
-changed.show()
+# changed.show()
 
