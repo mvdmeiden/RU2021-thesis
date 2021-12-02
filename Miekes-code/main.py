@@ -1,6 +1,5 @@
-# Authors
+# Author
 # Mieke van der Meiden  Radboud University, The Netherlands
-# Benjamin Robijn       Radboud University, The Netherlands
 
 # Imports
 import numpy as np
@@ -22,21 +21,23 @@ def generate_data(n, min_length, max_length, machine):
 
 
 # The rest of the code
-datatest = [['00110', '01101'],
-            ['0101', '1000'],
-            ['110', '111']]
-datatest = np.array(datatest)
-
-test = Machine(2)
+test = Machine(8)
 test.show()
+print(test.emptytrans)
 print()
-data = generate_data(10, 3, 10, test)
+data = generate_data(100, 3, 10, test)
 data = np.array(data)
-# test.show()
 # print(data)
 
-a = Agent(0, data)
-changed = a.add_one_state()
+a = Agent(0, data, comp_limit=10, acceptance=0.7)
+a.given_machine = Machine(0)
+while not a.satisfied and len(a.given_machine.states) < a.comp_limit:
+    a.add_one_state(a.given_machine)
+    a.run_machine()
+    # print(a.check_machine('hamming'))
 
-changed.show()
+# a.current_machine.show()
+
+
+
 

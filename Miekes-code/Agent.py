@@ -3,16 +3,16 @@ import random as rnd
 import textdistance
 from State import State
 from Machine import Machine
-import copy
 
 
 class Agent:
-    def __init__(self, i, dataset=[], acceptance=0.6, comp_limit=10):
+    def __init__(self, i, dataset=None, acceptance=0.5, comp_limit=10):
         self.id = i
-        self.dataset = dataset
+        self.dataset = dataset if not None else []
         self.acceptance = acceptance
         self.comp_limit = comp_limit
-        self.current_machine = None
+        self.given_machine = None
+        self.generated = None
         self.satisfied = False
 
     def add_one_state(self, given_machine=None):
@@ -41,33 +41,38 @@ class Agent:
             target_state = rnd.choice(new_machine.states).id
             new_machine.states[i].transitions[rnd.choice(new_machine.input_alphabet)] = (
                 target_state, rnd.choice(new_machine.output_alphabet))
-        return new_machine
+        self.given_machine = new_machine
 
+    def run_machine(self):
+        self.generated = [self.given_machine.run_input(i) for i in self.dataset[:, 0]]
+        # print(self.generated)
 
-    def check_machine(self):
-        output = [self.current_machine.run_input(i) for i in self.dataset[:, 0]]
-        print(output)
-        correct = 0
-        for i in range(0, len(output)):
-            if output[i] == self.dataset[i][1]:
-                correct += 1
+    def check_machine(self, method='hamming'):
+        if self.generated is None:
+            return 'No output generated yet. Please first run the input through a machine.'
 
-        accuracy = correct/len(self.dataset)
-        if accuracy > self.acceptance:
-            self.satisfied = True
-        return accuracy
-
-    def check_machine_char(self):
-        output = [self.current_machine.run_input(i) for i in self.dataset[:, 0]]
-        print(output)
         sum = 0
-        for i in range(0, len(output)):
-            sum += 1 - (textdistance.hamming(output[i], self.dataset[i][1])/len(output[i]))
+        if method == 'hamming':
+            for i, a, b in zip(self.dataset[:, 0], self.dataset[:, 1], self.generated):
+                distance = textdistance.hamming(a, b)
+                sum += 1-(distance/len(i))
 
-        accuracy = sum/len(output)
-        if accuracy > self.acceptance:
-            self.satisfied = True
-        return accuracy
+            result = sum/len(self.dataset)
+            if result > self.acceptance:
+                self.satisfied = True
+
+            return 'hamming accuracy: ' + str(result)
+
+        if method == 'accuracy':
+            correct = 0
+            for a, b in zip(self.dataset[:, 1], self.generated):
+                if a == b:
+                    correct += 1
+            accuracy = correct/len(self.dataset)
+
+            if accuracy > self.acceptance:
+                self.satisfied = True
+            return 'accuracy: ' + str(accuracy)
 
 
 
