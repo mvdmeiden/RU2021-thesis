@@ -11,7 +11,7 @@ class Agent:
         self.dataset = dataset if not None else []
         self.acceptance = acceptance
         self.comp_limit = comp_limit
-        self.current_machine = None
+        self.given_machine = None
         self.generated = None
         self.satisfied = False
 
@@ -41,10 +41,10 @@ class Agent:
             target_state = rnd.choice(new_machine.states).id
             new_machine.states[i].transitions[rnd.choice(new_machine.input_alphabet)] = (
                 target_state, rnd.choice(new_machine.output_alphabet))
-        self.current_machine = new_machine
+        self.given_machine = new_machine
 
     def run_machine(self):
-        self.generated = [self.current_machine.run_input(i) for i in self.dataset[:, 0]]
+        self.generated = [self.given_machine.run_input(i) for i in self.dataset[:, 0]]
         # print(self.generated)
 
     def check_machine(self, method='hamming'):
@@ -73,18 +73,6 @@ class Agent:
             if accuracy > self.acceptance:
                 self.satisfied = True
             return 'accuracy: ' + str(accuracy)
-
-    def check_machine_char(self):
-        output = [self.current_machine.run_input(i) for i in self.dataset[:, 0]]
-        print(output)
-        sum = 0
-        for i in range(0, len(output)):
-            sum += 1 - (textdistance.hamming(output[i], self.dataset[i][1])/len(output[i]))
-
-        accuracy = sum/len(output)
-        if accuracy > self.acceptance:
-            self.satisfied = True
-        return accuracy
 
 
 
