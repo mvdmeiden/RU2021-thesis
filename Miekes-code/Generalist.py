@@ -16,4 +16,16 @@ class Generalist(Agent):
         return generated_machine, accuracy, 'G'
 
     def combine_machines(self, m1, m2):
-        return False
+        new_state_list = []
+        for q1, q2 in zip(m1.states, m2.states):
+            state = rnd.choice([q1, q2])
+            new_state_list.append(state)
+
+        print("temp:", new_state_list)
+
+        for state in new_state_list:
+            for key, value in list(state.transitions.items()):
+                if int(value[0][1]) >= len(new_state_list):
+                    del state.transitions[key]
+
+        print("final", new_state_list)

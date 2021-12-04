@@ -7,6 +7,7 @@ import random as rnd
 from Machine import Machine
 from Base import Base
 from Specialist import Specialist
+from Generalist import Generalist
 
 
 def generate_data(n, min_length, max_length, machine):
@@ -24,18 +25,26 @@ def generate_data(n, min_length, max_length, machine):
 # The rest of the code
 test = Machine(8)
 test.show()
-print(test.emptytrans)
+# print(test.emptytrans)
 print()
 data = generate_data(100, 3, 10, test)
 data = np.array(data)
 # print(data)
 
-a = Specialist(0, data, comp_limit=10, acceptance=0.5)
-m = Machine(0)
-result = m, None, None
-while not a.satisfied and len(result[0].states) < a.comp_limit:
-    result = a.act(result[0])
-    print(result[1])
+a = Generalist(0, data, comp_limit=10, acceptance=0.5)
+m1 = Machine(4)
+m1.show()
+print()
+
+m2 = Machine(8)
+m2.show()
+print()
+a.combine_machines(m1, m2)
+
+# result = m, None, None
+# while not a.satisfied and len(result[0].states) < a.comp_limit:
+#     result = a.act(result[0])
+#     print(result[1])
 
 # print(a.output())
 # print(a.current_machine.emptytrans)

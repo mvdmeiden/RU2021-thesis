@@ -31,7 +31,7 @@ class Machine:
         for i in range(1, self.num_states):
             state_name = 'q' + str(i)
             temp_states.append(State(state_name, {}))
-            nr_in = rnd.randint(1, len(self.emptytrans)-1) if len(self.emptytrans) > 1 else 1
+            nr_in = rnd.randint(1, len(self.emptytrans)) if len(self.emptytrans) > 1 else 1
             nr_out = rnd.randint(0, len(self.input_alphabet))
 
             for j in range(0, nr_in):
