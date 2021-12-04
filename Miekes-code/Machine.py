@@ -2,7 +2,6 @@
 import random as rnd
 from State import State
 import copy
-import numpy as np
 
 
 class Machine:

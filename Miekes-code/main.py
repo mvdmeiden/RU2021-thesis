@@ -5,7 +5,8 @@
 import numpy as np
 import random as rnd
 from Machine import Machine
-from Agent import Agent
+from Base import Base
+from Specialist import Specialist
 
 
 def generate_data(n, min_length, max_length, machine):
@@ -29,14 +30,15 @@ data = generate_data(100, 3, 10, test)
 data = np.array(data)
 # print(data)
 
-a = Agent(0, data, comp_limit=10, acceptance=0.7)
-a.given_machine = Machine(0)
-while not a.satisfied and len(a.given_machine.states) < a.comp_limit:
-    a.add_one_state(a.given_machine)
-    a.run_machine()
-    # print(a.check_machine('hamming'))
+a = Specialist(0, data, comp_limit=10, acceptance=0.5)
+m = Machine(0)
+result = m, None, None
+while not a.satisfied and len(result[0].states) < a.comp_limit:
+    result = a.act(result[0])
+    print(result[1])
 
-# a.current_machine.show()
+# print(a.output())
+# print(a.current_machine.emptytrans)
 
 
 
