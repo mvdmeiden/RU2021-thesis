@@ -23,7 +23,7 @@ def generate_data(n, min_length, max_length, machine):
 
 
 # The rest of the code
-test = Machine(8)
+test = Machine(8, input_alphabet=['a', 'b', 'c'])
 test.show()
 # print(test.emptytrans)
 print()
@@ -38,8 +38,11 @@ print()
 
 m2 = Machine(8)
 m2.show()
+print(m2.emptytrans)
 print()
-a.combine_machines(m1, m2)
+m3 = a.combine_machines(m1, m2)
+m3.show()
+print(m3.emptytrans)
 
 # result = m, None, None
 # while not a.satisfied and len(result[0].states) < a.comp_limit:
