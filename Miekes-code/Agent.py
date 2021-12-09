@@ -11,9 +11,12 @@ class Agent:
         self.satisfied = False
 
     def run_machine(self, m):
-        return [m.run_input(i) for i in self.dataset[:, 0]]
+        return [m.run_input(i) for i in self.dataset[:, 0]] if m is not None else None
 
     def check_machine(self, data, method='hamming'):
+        if data is None:
+            return 0
+
         sum = 0
         if method == 'hamming':
             for i, a, b in zip(self.dataset[:, 0], self.dataset[:, 1], data):

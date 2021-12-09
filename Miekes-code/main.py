@@ -23,7 +23,7 @@ def generate_data(n, min_length, max_length, machine):
 
 
 # The rest of the code
-test = Machine(8, input_alphabet=['a', 'b', 'c'])
+test = Machine(50, input_alphabet=['1', '0'])
 test.show()
 # print(test.emptytrans)
 print()
@@ -31,26 +31,50 @@ data = generate_data(100, 3, 10, test)
 data = np.array(data)
 # print(data)
 
-a = Generalist(0, data, comp_limit=10, acceptance=0.5)
-m1 = Machine(4)
-m1.show()
-print()
+# a = Generalist(0, data, comp_limit=10, acceptance=0.5)
+# m1 = Machine(3)
+# m2 = Machine(8)
+#
+# m, c, t = a.act(m1, m2)
+# m.show()
 
-m2 = Machine(8)
-m2.show()
-print(m2.emptytrans)
-print()
-m3 = a.combine_machines(m1, m2)
-m3.show()
-print(m3.emptytrans)
 
-# result = m, None, None
-# while not a.satisfied and len(result[0].states) < a.comp_limit:
-#     result = a.act(result[0])
-#     print(result[1])
+# MULTI-AGENT IMPLEMENTATION
+agents = []
+machines = []
+num_agents = 3
+for i in range(num_agents):
+    agents.append(Specialist(i, data, comp_limit=5, acceptance=0.9))
 
-# print(a.output())
-# print(a.current_machine.emptytrans)
+agents.append(Generalist(num_agents, data, comp_limit=5, acceptance=0.9))
+
+finished = False
+largest_c = 0
+while not finished:
+    for s in agents:
+        if s.type == 'S':
+            m, c, t = s.act(rnd.choice(machines)) if machines else s.act(None)
+        elif s.type == 'G':
+            m, c, t = s.act(rnd.choice(machines), rnd.choice(machines)) if machines else s.act(None, None)
+        else:
+            print('unrecognized scientist type.')
+            m, c, t = None, 0, None
+        # m.show()
+        print("{}'s accuracy: {}".format(s.id, c))
+        if m is not None:
+            machines.append(m)
+        if c > largest_c:
+            largest_c = c
+        if s.satisfied:
+            print("final accuracy: {}, found by {}".format(c, t))
+            m.show()
+            finished = True
+            break
+        if len(machines) > 10000:
+            finished = True
+            print("largest found accuracy: ", largest_c)
+            break
+
 
 
 

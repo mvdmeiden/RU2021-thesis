@@ -7,25 +7,30 @@ import random as rnd
 class Specialist(Agent):
     def __init__(self, i, dataset, acceptance, comp_limit):
         super().__init__(i, dataset, acceptance, comp_limit)
+        self.type = 'S'
 
-    def act(self, m, method='hamming'):
+    def act(self, m=None, method='hamming'):
         generated_machine = self.add_one_state(m)
         generated_data = self.run_machine(generated_machine)
         accuracy = self.check_machine(generated_data, method)
 
-        return generated_machine, accuracy, 'S'
+        return generated_machine, accuracy, self.type
 
     def add_one_state(self, given_machine=None):
         if given_machine is None:
             new_machine = Machine(0)
         else: new_machine = given_machine.copy()
+
         emptytrans = new_machine.emptytrans
-        if not emptytrans:  # or i >= self.comp_limit:
-            print('Full FST. Can\'t add any more states')
-            self.satisfied = True
-            return new_machine
+        if not emptytrans:
+            print('Full FST. Can\'t add any more states. None type returned.')
+            return None
 
         i = len(new_machine.states)
+        if i > self.comp_limit:
+            print('too large. None type returned.')
+            return None
+
         state_name = 'q' + str(i)
         new_machine.states.append(State(state_name, {}))
         nr_in = rnd.randint(1, len(emptytrans)-1) if len(emptytrans) > 1 else 1
@@ -33,10 +38,10 @@ class Specialist(Agent):
 
         for j in range(0, nr_in):
             source_state_id, inp = emptytrans.pop(rnd.randrange(len(emptytrans)))
-            new_machine.states[source_state_id].transitions[inp] = (state_name, rnd.choice(new_machine.output_alphabet))
+            new_machine.states[int(source_state_id[1])].transitions[inp] = (state_name, rnd.choice(new_machine.output_alphabet))
 
         for char in new_machine.input_alphabet:
-            emptytrans.append((i, char))
+            emptytrans.append((state_name, char))
 
         for j in range(0, nr_out):
             target_state = rnd.choice(new_machine.states).id
