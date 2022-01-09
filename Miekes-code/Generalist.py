@@ -6,22 +6,33 @@ import itertools
 
 
 class Generalist(Agent):
-    def __init__(self, i, dataset, acceptance, comp_limit):
-        super().__init__(i, dataset, acceptance, comp_limit)
+    def __init__(self, i, acceptance, comp_limit):
+        super().__init__(i, acceptance, comp_limit)
         self.type = 'G'
 
-    def act(self, m1, m2, method='hamming'):
+    def act(self, m1, m2, observations, method='hamming'):
         generated_machine = self.combine_machines(m1, m2)
-        generated_data = self.run_machine(generated_machine)
-        accuracy = self.check_machine(generated_data, method)
+
+        situations = [x[0] for x in observations]
+        generated_data = self.run_machine(situations, generated_machine)
+        accuracy = self.check_machine(observations, generated_data, method)
+
+        if accuracy > self.personalbest:
+            self.personalbest = accuracy
 
         return generated_machine, accuracy, self.type
 
     def combine_machines(self, m1, m2):
-        if m1 is None or m2 is None:
-            return None
+        if m1 is None:
+            m1 = Machine(self.comp_limit)
+        if m2 is None:
+            m2 = Machine(self.comp_limit)
         if m1.input_alphabet is not m2.input_alphabet:
             raise IOError('input alphabet not the same')
+
+        if len(m1.states) > self.comp_limit or len(m2.states) > self.comp_limit:
+            print("too complex for me to handle :(")
+            return None
 
         new_state_list = []
         new_emptytrans = []
