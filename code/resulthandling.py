@@ -15,7 +15,7 @@ def fill(a, fillvalue):
 def normaltests():
     data = []
     for i in range(10):
-        a = np.load('./results/StrongSpecialists/50.50-0' + str(i) + '-2021.12.28.npy', allow_pickle=True)
+        a = np.load(r + 'StrongSpecialists/50.50-0' + str(i) + '-2021.12.28.npy', allow_pickle=True)
         a = np.rot90(a)
         data.append(a)
 
@@ -196,6 +196,7 @@ def numbers():
     print([np.average(mac_siz), np.average(prop_siz), np.average(not_siz)])
 
 
+r = 'D:/Documents/Uni/2021-2022/Scriptie/RU2021-thesis/data/'
 normaltests()
 
 # acc1 = [[0.225, 0.41791000000000017, 0.593],
