@@ -1,6 +1,6 @@
 # Author
 # Mieke van der Meiden - Radboud University, The Netherlands
-# mieke.vandermeiden@ru.nl
+# email: mieke.vandermeiden@ru.nl
 
 # Imports
 import random as rnd
@@ -106,10 +106,11 @@ while num_iters < 100 and num_satisfied < num_agents:
     results = np.vstack([results, [row]]) if results is not None else np.array([row])
     num_iters += 1
 
-
+# some information about the run
 print("largest found accuracy: ", largest_c)
 print("amount of machines made: ", num_machines)
 print("amount of satisfied agents: ", num_satisfied)
 print("amount of iterations: ", num_iters)
 
+# save the results array locally
 np.save(path, results)

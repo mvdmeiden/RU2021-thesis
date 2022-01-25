@@ -41,7 +41,7 @@ class Specialist(Agent):
 
         for j in range(0, nr_in):
             source_state_id, inp = emptytrans.pop(rnd.randrange(len(emptytrans)))
-            new_machine.states[int(source_state_id[1])].transitions[inp] = \
+            new_machine.states[int(source_state_id[1])].transitions[inp] =\
                 (state_name, rnd.choice(new_machine.output_alphabet))
 
         for char in new_machine.input_alphabet:
