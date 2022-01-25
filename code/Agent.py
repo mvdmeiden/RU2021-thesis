@@ -8,9 +8,9 @@ class Agent:
         self.acceptance = acceptance
         self.comp_limit = comp_limit
         self.satisfied = False
-        self.personalbest = 0
 
-    def run_machine(self, data, m):
+    @staticmethod
+    def run_machine(data, m):
         return m.observe(situations=data) if m is not None else None
 
     def check_machine(self, observed, generated, method='hamming'):
@@ -42,13 +42,3 @@ class Agent:
 
         print('unrecognized method. 0 returned')
         return 0
-
-
-
-
-
-
-
-
-
-

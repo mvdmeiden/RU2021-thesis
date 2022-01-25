@@ -17,9 +17,6 @@ class Generalist(Agent):
         generated_data = self.run_machine(situations, generated_machine)
         accuracy = self.check_machine(observations, generated_data, method)
 
-        if accuracy > self.personalbest:
-            self.personalbest = accuracy
-
         return generated_machine, accuracy, self.type
 
     def combine_machines(self, m1, m2):
@@ -54,4 +51,3 @@ class Generalist(Agent):
         new_m.states = new_state_list
         new_m.emptytrans = new_emptytrans
         return new_m
-

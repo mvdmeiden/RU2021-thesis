@@ -1,31 +1,13 @@
 # Author
-# Mieke van der Meiden  Radboud University, The Netherlands
+# Mieke van der Meiden - Radboud University, The Netherlands
+# mieke.vandermeiden@ru.nl
 
 # Imports
 import random as rnd
 import numpy as np
 from Machine import Machine
-from Base import Base
 from Specialist import Specialist
 from Generalist import Generalist
-
-# small snippits
-# test = Machine(50, input_alphabet=['1', '0'])
-# test.show()
-# # print(test.emptytrans)
-# print()
-# data = test.observe(n=35)
-# print(data)
-#
-# # a = Generalist(0, comp_limit=10, acceptance=0.5)
-# a = Specialist(0, comp_limit=10, acceptance=0.5)
-# m1 = Machine(3)
-# m2 = Machine(8)
-#
-# m1.show()
-# m, c, t = a.act(m1, test.observe(n=30))
-# if m is not None:
-#     m.show()
 
 
 # MULTI-AGENT SIMULATIONS
@@ -58,7 +40,7 @@ num_satisfied = 0
 
 # setup output to save results
 results = None
-path = './results/string-length/30-04-2022.01.03.npy'
+path = 'output.npy'
 
 while num_iters < 100 and num_satisfied < num_agents:
     row = [0] * num_agents
@@ -129,17 +111,5 @@ print("largest found accuracy: ", largest_c)
 print("amount of machines made: ", num_machines)
 print("amount of satisfied agents: ", num_satisfied)
 print("amount of iterations: ", num_iters)
-# print(results[-1])
 
 np.save(path, results)
-#
-# test = np.load('results.npy', allow_pickle=True)
-# for g in agents:
-#     for a in g:
-#         print(a.personalbest)
-
-
-
-
-
-

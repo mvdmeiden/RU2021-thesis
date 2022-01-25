@@ -13,17 +13,14 @@ class Machine:
         self.starting_state = starting_state
         self.max_length = max_length
 
-        #if num_states > 50:
-        #    raise ValueError('Too many states')
-
         # the actual FST is created here; a list of states with transitions and a list of possible transitions
         self.emptytrans = []
         self.states = self.__build_machine(num_states)
 
     def __build_machine(self, num_states):
-        ''' This function creates the list of states and empty transitions for an FST machine.
+        """ This function creates the list of states and empty transitions for an FST machine.
         :return: temp_states. A list of states.
-        '''
+        """
 
         temp_states = [State('q0', {})]
         for char in self.input_alphabet:
@@ -92,10 +89,10 @@ class Machine:
 
     # Simple helper to automatically print FSM transition tables
     def show(self):
-        '''to nicely print a machine'''
+        """to nicely print a machine"""
         for item in self.states:
             print(item)
 
     def copy(self):
-        '''to make a copy. avoids call by reference troubles.'''
+        """to make a copy. avoids call by reference troubles."""
         return copy.deepcopy(self)

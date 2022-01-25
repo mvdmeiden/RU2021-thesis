@@ -18,9 +18,6 @@ class Specialist(Agent):
         generated_data = self.run_machine(situations, generated_machine)
         accuracy = self.check_machine(observations, generated_data, method)
 
-        if accuracy > self.personalbest:
-            self.personalbest = accuracy
-
         return generated_machine, accuracy, self.type
 
     def add_one_state(self, given_machine=None):
@@ -30,9 +27,7 @@ class Specialist(Agent):
 
         emptytrans = new_machine.emptytrans
         if not emptytrans:
-            print('Full FST. Can\'t add any more states. I\'ll make a new one.')
-            # return Machine(2)
-            return None
+            return Machine(2)
 
         i = len(new_machine.states)
         if i >= self.comp_limit:
@@ -46,7 +41,8 @@ class Specialist(Agent):
 
         for j in range(0, nr_in):
             source_state_id, inp = emptytrans.pop(rnd.randrange(len(emptytrans)))
-            new_machine.states[int(source_state_id[1])].transitions[inp] = (state_name, rnd.choice(new_machine.output_alphabet))
+            new_machine.states[int(source_state_id[1])].transitions[inp] = \
+                (state_name, rnd.choice(new_machine.output_alphabet))
 
         for char in new_machine.input_alphabet:
             emptytrans.append((state_name, char))

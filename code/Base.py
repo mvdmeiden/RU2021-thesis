@@ -17,7 +17,8 @@ class Base(Agent):
 
         return generated_machine, accuracy, self.type
 
-    def add_one_state(self, given_machine=None):
+    @staticmethod
+    def add_one_state(given_machine=None):
         if given_machine is None:
             new_machine = Machine(0)
         else: new_machine = given_machine.copy()
@@ -34,7 +35,8 @@ class Base(Agent):
 
         for j in range(0, nr_in):
             source_state_id, inp = emptytrans.pop(rnd.randrange(len(emptytrans)))
-            new_machine.states[int(source_state_id[1])].transitions[inp] = (state_name, rnd.choice(new_machine.output_alphabet))
+            new_machine.states[int(source_state_id[1])].transitions[inp] = \
+                (state_name, rnd.choice(new_machine.output_alphabet))
 
         for char in new_machine.input_alphabet:
             emptytrans.append((state_name, char))
@@ -46,4 +48,3 @@ class Base(Agent):
             emptytrans.remove((state, inp))
 
         return new_machine
-
