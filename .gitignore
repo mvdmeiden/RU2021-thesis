@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # workspace.xml
-.idea/workspace.xml
+.idea/
 
-Miekes-code/resulthandling.py
+code/resulthandling.py
